@@ -1,0 +1,4 @@
+/* Multiboot2 constants for assembly */
+.set MULTIBOOT2_HEADER_MAGIC,        0xE85250D6
+.set MULTIBOOT2_ARCHITECTURE_I386,   0
+.set MULTIBOOT2_ARCHITECTURE_MIPS32, 4

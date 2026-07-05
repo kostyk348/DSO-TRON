@@ -1,0 +1,7 @@
+#ifndef MULTIBOOT_H
+#define MULTIBOOT_H
+
+#define MULTIBOOT2_HEADER_MAGIC  0xE85250D6
+#define KERNEL_BASE              0xFFFFFFFF80000000
+
+#endif
