@@ -210,7 +210,11 @@ extern T_TCB          *_kernel_tcb[];
 #define _KERNEL_CHK_ISLD(s) ((s) & T_KER_ISLD)
 
 /* These must be implemented in arch-specific code (cpu.h) */
+#if defined(DSO_ARCH_XTENSA)
+#include "../sysdepend/xtensa/cpu.h"
+#else
 #include "../sysdepend/x86_64/cpu.h"
+#endif
 
 /* ── DSO globals ───────────────────────────────────────── */
 

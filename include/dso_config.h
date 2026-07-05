@@ -32,6 +32,7 @@
 /* ── Memory ─────────────────────────────────────────────── */
 #define DSO_KERNEL_HEAP_SIZE 8192  /* sys_alloc size */
 #define DSO_USER_HEAP_SIZE   4096  /* user tasks arena */
+#define DSO_CSI_FIFO_SIZE    64    /* CSI sample buffer (power of 2) */
 
 /* ── Cut features (set 0 to disable) ────────────────────── */
 #define DSO_USE_MUTEX     0      /* mutex: not needed in TT */
