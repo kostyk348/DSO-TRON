@@ -1,5 +1,9 @@
 # DSO-TRON — Deterministic Systems Optimization for μITRON 4.0
 
+[![CI](https://github.com/kostyk348/DSO-TRON/actions/workflows/ci.yml/badge.svg)](https://github.com/kostyk348/DSO-TRON/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+[![C](https://img.shields.io/badge/C-99-blue.svg)](https://en.wikipedia.org/wiki/C_(programming_language))
+
 **DSO-TRON** — это детерминированное ядро RTOS, построенное на базе референсной реализации μITRON 4.0 (URIBO).  
 Основные принципы: **Static Allocation**, **Lock-free IPC**, **Time-Triggered Scheduling**.
 
