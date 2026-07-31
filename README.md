@@ -251,4 +251,4 @@ with deterministic design.
 
 ## License
 
-MIT License. See `LICENSE` for details.
+Apache 2.0. See `LICENSE` for details.
