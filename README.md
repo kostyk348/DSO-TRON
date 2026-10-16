@@ -3,8 +3,11 @@
 [![CI](https://github.com/kostyk348/DSO-TRON/actions/workflows/ci.yml/badge.svg)](https://github.com/kostyk348/DSO-TRON/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 [![C](https://img.shields.io/badge/C-99-blue.svg)](https://en.wikipedia.org/wiki/C_(programming_language))
+[![Release](https://img.shields.io/github/v/release/kostyk348/DSO-TRON?sort=semver&color=blue)](https://github.com/kostyk348/DSO-TRON/releases)
+[![License](https://img.shields.io/badge/license-Apache-2.0-green)](https://github.com/kostyk348/DSO-TRON/blob/master/LICENSE)
+[![Last commit](https://img.shields.io/github/last-commit/kostyk348/DSO-TRON?branch=master)](https://github.com/kostyk348/DSO-TRON/commits/master)
 
-**DSO-TRON** — это детерминированное ядро RTOS, построенное на базе референсной реализации μITRON 4.0 (URIBO).  
+**DSO-TRON** — это детерминированное ядро RTOS, построенное на базе референсной реализации μITRON 4.0 (URIBO).
 Основные принципы: **Static Allocation**, **Lock-free IPC**, **Time-Triggered Scheduling**.
 
 ```
@@ -67,7 +70,7 @@ Replaces μITRON's `dtq` (data queue) which uses mutexes, wait queues, and criti
 ```c
 // Producer (Task A)
 dso_fifo_push(&queue, &data);   // writes tail, reads head (volatile)
-// Consumer (Task B)  
+// Consumer (Task B)
 dso_fifo_pop(&queue, &data);    // reads tail, writes head (volatile)
 ```
 
@@ -168,6 +171,7 @@ ER snd_dtq(ID dtqid, VP_INT data)
 
 ```bash
 # Arch Linux / Debian / Ubuntu
+
 sudo apt install build-essential lld grub2-common xorriso qemu-system-x86
 ```
 
