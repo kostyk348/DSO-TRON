@@ -1,0 +1,20 @@
+Start testing: Nov 17 08:59 RTZ 2 (зима)
+----------------------------------------------------------
+1/1 Testing: scheduler_determinism
+1/1 Test: scheduler_determinism
+Command: "C:/Users/Lab/AppData/Local/hermes/profiles/fabricessa/workspace/polish/DSO-TRON/build-host/test_sched.exe"
+Directory: C:/Users/Lab/AppData/Local/hermes/profiles/fabricessa/workspace/polish/DSO-TRON/build-host
+"scheduler_determinism" start time: Nov 17 08:59 RTZ 2 (зима)
+Output:
+----------------------------------------------------------
+DSO-TRON host tests (scheduler)
+OK: РІСЃРµ РїСЂРѕРІРµСЂРєРё РїСЂРѕР№РґРµРЅС‹
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"scheduler_determinism" end time: Nov 17 08:59 RTZ 2 (зима)
+"scheduler_determinism" time elapsed: 00:00:00
+----------------------------------------------------------
+
+End testing: Nov 17 08:59 RTZ 2 (зима)

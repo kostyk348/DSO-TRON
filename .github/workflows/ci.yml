@@ -20,3 +20,15 @@ jobs:
         with:
           name: dso-tron.bin
           path: build/dso-tron.bin
+
+  host-tests:
+    name: Host tests (scheduler determinism, no hardware)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Configure
+        run: cmake -S . -B build-host -DCMAKE_BUILD_TYPE=Release
+      - name: Build
+        run: cmake --build build-host --parallel
+      - name: Run tests
+        run: ctest --test-dir build-host --output-on-failure

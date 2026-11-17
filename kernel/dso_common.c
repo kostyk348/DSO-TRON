@@ -32,7 +32,10 @@ DSO_POOL(_kernel_tcb_pool, T_TCB, DSO_MAX_TSK);
 
 /* ── DSO TT Scheduler ──────────────────────────────────── */
 
-static uint8_t        _dso_ready_scratch[DSO_MAX_TASKS_PER_TICK];
+/* Готовых задач в тике не может быть больше, чем слотов в таблице, поэтому буфер
+ * считается по DSO_MAX_SLOTS (а не по DSO_MAX_TASKS_PER_TICK) — иначе таблица
+ * из 16 слотов переполнила бы массив из 8 байт. */
+static uint8_t        _dso_ready_scratch[DSO_MAX_SLOTS];
 static dso_scheduler  _dso_sched;
 
 const dso_slot       *_dso_slot_table = 0;
@@ -40,6 +43,7 @@ uint32_t              _dso_num_slots  = 0;
 
 void dso_sched_register(const dso_slot *slots, uint32_t num)
 {
+    if (num > DSO_MAX_SLOTS) num = DSO_MAX_SLOTS;   /* буфер статический: обрезаем, а не переполняем */
     _dso_slot_table = slots;
     _dso_num_slots  = num;
     dso_sched_init(&_dso_sched, slots, num, _dso_ready_scratch);

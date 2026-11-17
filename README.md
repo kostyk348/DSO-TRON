@@ -99,9 +99,12 @@ static const dso_slot schedule[] = {
 ```
 
 - **Static schedule table** — computed at compile time
-- **O(slots) per tick** — just iterate and check `tick % period == offset`
-- **No priorities** — execution order = table order within a tick
-- **No preemption** — tasks run to completion (or budget limit)
+- **O(slots) per tick** to find what is ready (`tick % period == offset`), plus
+  **O(ready × slots) ≤ 16×16** to order the ready tasks inside the tick
+- **No preemption, no ready queue** — tasks run to completion (or budget limit)
+- **`priority` orders tasks *within one tick*** (lower runs first, ties keep table order);
+  it is not a μITRON priority scheduler
+- **`period == 0` disables a slot** — a guard, because `tick % 0` traps on real hardware
 - **Single interrupt source** — PIT at 100Hz
 
 ### 4. Resource Contracts
@@ -171,6 +174,31 @@ ER snd_dtq(ID dtqid, VP_INT data)
 | DTQ | malloc(20+64) | Static array entry |
 | DTQ buf | malloc(64) | Static array entry |
 | Total | 3×malloc + 2×free | 0 malloc, 0 free |
+
+## Host tests (no hardware, no QEMU)
+
+The scheduler in `include/dso_sched.h` has no hardware dependencies, so its contract is verified
+on a normal x86/ARM host — the kernel image is not needed:
+
+```bash
+cmake -S . -B build-host -DCMAKE_BUILD_TYPE=Release
+cmake --build build-host
+ctest --test-dir build-host --output-on-failure
+```
+
+What is checked (`tests/host/test_sched.c`):
+
+| Проверка | Что доказывает |
+|---|---|
+| `period` / `offset` за 1000 тиков | слоты срабатывают ровно по расписанию (100 / 100 / 20 срабатываний) |
+| два одинаковых прогона | трасса побайтово совпадает — детерминизм, а не «в среднем одинаково» |
+| порядок внутри тика | задачи идут по `priority`, при равенстве — по порядку таблицы |
+| `period == 0` | слот выключен, программа не падает (на старом коде тест ловил деление на ноль) |
+| 60 тиков по 4 слотам | ни одна задача не запускается дважды за тик |
+| 8 слотов, все готовы | `ready_ids` вмещает `num_slots`, порядок стабилен |
+| 20 000 тиков | длинный прогон без переполнений счётчиков |
+
+CI гоняет эти тесты джобом `host-tests` на каждый push.
 
 ## Building and Running
 
