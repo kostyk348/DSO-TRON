@@ -319,6 +319,10 @@ dso-tron/
 DSO-TRON is not a fork of URIBO. It uses URIBO's API surface and type system
 as a specification reference, reimplementing all kernel services from scratch
 with deterministic design.
+## Contributing
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for how to build, report bugs and security problems, and submit changes.
+
 
 ## License
 
